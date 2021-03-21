@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from: one
+  to: one
+  when: 2021-03-20 07:56:13
+  duration: 1.5
+
+two:
+  from: two
+  to: two
+  when: 2021-03-20 07:56:13
+  duration: 1.5
