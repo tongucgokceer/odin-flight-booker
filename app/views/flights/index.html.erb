@@ -1,0 +1,60 @@
+<h1>Search by:</h1>
+
+<%= form_tag(flights_path, method: "get") do %>
+    <label>From:</label>
+    <select name=flight[:from_airport_id], class="form-control">
+        <option value="None">-Select-</option>
+        <%= @airports.each do |airport| %>
+            <option value="<%= airport.id %>"><%= airport.code %></option>
+        <% end %>
+    </select><br> <br>
+
+    <label>To:</label>
+    <select name=flight[:to_airport_id], class="form-control">
+    <option value="None">-Select-</option>
+    <%= @airports.each do |airport| %>
+        <option value="<%= airport.id %>"><%= airport.code %></option>
+    <% end %>
+    </select><br> <br>
+
+    <label># of passengers:</label>
+    <select name="abc", class="form-control">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    </select><br> <br>
+    
+
+    <label>Date:</label>
+    <select name=flight[:date_of_flight], class="form-control">
+   
+    <%= @dates.each do |date| %>
+        <option value="<%= date[1] %>"><%= date[0] %></option>
+    <% end %>
+    </select><br> <br>
+    
+ 
+
+
+
+    <input type="submit" value="Submit">
+<%end%>
+<% if @flights != nil %> # there is a problem here, whenever user hits Submit button, it thinks @flights is not nil !!!
+    <h1>Flights:</h1>
+
+    <ul id="flights">
+
+    <% @flights.each do |flight| %>
+        <li>
+        <%= flight.duration %>
+        <%= flight.date_of_flight %>
+        </li>
+    <% end %>
+</ul>
+<% end %>
+
+
+
+
