@@ -1,0 +1,32 @@
+<%= form_for @booking do |f| %>
+    
+    <p>
+
+    <h2>Date:</h2>
+
+        <p> <%= @flight.date_of_flight %> </p>
+
+        <h2>Airport of departure:</h2>
+
+        <p> <%= @departureairport.code %> </p>
+
+        <h2>Airport of arrival:</h2>
+
+        <p> <%= @arrivalairport.code %> </p>
+
+        <h2>Passenger Information:</h2>
+
+        <%= hidden_field_tag "booking[flight_id]", "#{@flight.id}" %>
+
+    </p>
+
+    <%= f.fields_for :passengers do |builder| %>
+      <%= builder.label :name %>
+      <%= builder.text_field :name %> <br>
+      <%= builder.label :email %>
+      <%= builder.text_field :email %> <br>
+      <br>
+    <% end %>
+
+    <p><%= f.submit "Submit" %></p>
+  <% end %>

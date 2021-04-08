@@ -2,14 +2,14 @@ class Flight < ApplicationRecord
   belongs_to :from_airport, :class_name => "Airport"
   belongs_to :to_airport, :class_name => "Airport"
 
+  has_many :bookings
+
   def self.search(search)
     if search
       flights=Flight.all
-      flights=flights.where(from_airport_id: search[:":from_airport_id"][","])
-      flights=flights.where(to_airport_id: search[:":to_airport_id"][","])
-      #flights=flights.where(date_of_flight: search[:":date_of_flight"][","])
-      #flights=flights.where(date_of_flight: DateTime.strptime(search[:":date_of_flight"][","],'%Y-%m-%d').beginning_of_day..DateTime.strptime(search[:":date_of_flight"][","],'%Y-%m-%d').end_of_day)
-      flights=flights.where(date_of_flight: DateTime.strptime(search[:":date_of_flight"][","],'%Y-%m-%d').beginning_of_day..DateTime.strptime(search[:":date_of_flight"][","],'%Y-%m-%d').end_of_day)
+      flights=flights.where(from_airport_id: search[:":from_airport_id"])
+      flights=flights.where(to_airport_id: search[:":to_airport_id"])
+      flights=flights.where(date_of_flight: DateTime.strptime(search[:":date_of_flight"],'%Y-%m-%d').beginning_of_day..DateTime.strptime(search[:":date_of_flight"],'%Y-%m-%d').end_of_day)
       return flights
     else
       #return Flight.all

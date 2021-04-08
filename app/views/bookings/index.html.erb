@@ -1,0 +1,24 @@
+
+
+<table>
+  <tr>
+    <th>Flight Number</th>
+    <th>Date of Flight</th>
+    <th>Departing</th>
+    <th>Arriving</th>
+    <th>Duration</th>
+  </tr>
+
+  <% for booking in @bookings %>
+    <tr>
+      <td><%= booking.flight_id %></td>
+      <td><%= booking.flight.date_of_flight %></td>
+      <td><%= Airport.find_by_id(booking.flight.from_airport_id).code %></td>
+      <td><%= Airport.find_by_id(booking.flight.to_airport_id).code %></td>
+      <td><%= booking.flight.duration %></td>
+      <td><%= link_to "Show", booking %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "Search for a new flight!", flights_path %></p>

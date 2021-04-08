@@ -1,60 +1,48 @@
 <h1>Search by:</h1>
 
 <%= form_tag(flights_path, method: "get") do %>
-    <label>From:</label>
-    <select name=flight[:from_airport_id], class="form-control">
-        <option value="None">-Select-</option>
-        <%= @airports.each do |airport| %>
-            <option value="<%= airport.id %>"><%= airport.code %></option>
-        <% end %>
-    </select><br> <br>
-
-    <label>To:</label>
-    <select name=flight[:to_airport_id], class="form-control">
-    <option value="None">-Select-</option>
-    <%= @airports.each do |airport| %>
-        <option value="<%= airport.id %>"><%= airport.code %></option>
-    <% end %>
-    </select><br> <br>
-
-    <label># of passengers:</label>
-    <select name="abc", class="form-control">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    </select><br> <br>
-    
-
-    <label>Date:</label>
-    <select name=flight[:date_of_flight], class="form-control">
    
-    <%= @dates.each do |date| %>
-        <option value="<%= date[1] %>"><%= date[0] %></option>
-    <% end %>
-    </select><br> <br>
-    
+    <label>From:</label>
+    <%= select_tag name='flight[:from_airport_id]', options_for_select(@airports.collect { |u| [u.code, u.id]} ,params[:number_of_passengers] ? params[:flight][:":from_airport_id"] : ""), prompt: 'please select' %>
+
  
 
+    <label>To:</label>
+    <%= select_tag name='flight[:to_airport_id]', options_for_select(@airports.collect { |u| [u.code, u.id]} ,params[:number_of_passengers] ? params[:flight][:":to_airport_id"] : ""), prompt: 'please select' %>
 
+    <label># of passengers:</label>
+    <%= select_tag 'number_of_passengers', options_for_select([["Select" , "" ], ["1",1], ["2",2], ["3",3], ["4",4]], params[:number_of_passengers]) %>
+    
+    <label>Deneme tarih:</label>
+    <%= select_tag name='flight[:date_of_flight]', options_for_select(@dates.collect { |u| [u[0], u[1]]} ,params[:number_of_passengers] ? params[:flight][:":date_of_flight"] : "") %>
 
     <input type="submit" value="Submit">
 <%end%>
-<% if @flights != nil %> # there is a problem here, whenever user hits Submit button, it thinks @flights is not nil !!!
+
+
+  
+
+
+<% if @flights != nil %>
+
+<%= form_tag(new_booking_path, method: "get") do %>
+
     <h1>Flights:</h1>
 
     <ul id="flights">
 
     <% @flights.each do |flight| %>
-        <li>
-        <%= flight.duration %>
-        <%= flight.date_of_flight %>
-        </li>
+        <label> <%= flight.duration %> </label>
+        <label> <%= flight.date_of_flight %> </label>        
+        <%= hidden_field_tag 'number_of_passengers', params[:number_of_passengers] %>
+        <input type="radio" name='flight_id' value= <%= flight.id %> ><br>
     <% end %>
 </ul>
-<% end %>
+    <input type="submit" value="Submit">
 
+    <%end%>
+    
+<% end %>
 
 
 

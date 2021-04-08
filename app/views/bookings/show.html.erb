@@ -1,0 +1,41 @@
+<%= "Your Booking" %>
+
+<p>
+  <h2>Date:</h2>
+
+  <p> <%= @flight.date_of_flight %> </p>
+
+  <h2>Airport of departure:</h2>
+
+  <p> <%= @departureairport.code %> </p>
+
+  <h2>Airport of arrival:</h2>
+
+  <p> <%= @arrivalairport.code %> </p>
+
+  <h2>Duration:</h2>
+  <%= @flight.duration %>
+
+  <h2>Passenger Information:</h2>
+
+</p>
+</p>
+
+<ol>
+<% for passenger in @booking.passengers %>
+  <li>
+  <label>First name:</label>
+    <%= passenger.name %> <br>
+    <label>E-mail:</label>
+    <%= passenger.email %> <br>
+    <br>
+  </li>
+<% end %>
+</ol>
+
+<p>
+
+  <%= link_to "View All", bookings_path %>
+</p>
+
+
