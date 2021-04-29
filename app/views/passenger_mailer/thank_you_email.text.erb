@@ -1,0 +1,14 @@
+Thanks for you booking confirmation from Odin Flight Booker, <%= @passenger.name %>
+
+===============================================
+
+You have successfully booked for flight : <%= @passenger.booking.flight.id %>
+
+Date: <%= @passenger.booking.flight.date_of_flight %>
+Airport of Departure: <%= @passenger.booking.flight.from_airport.code %>
+Airport of Arrival: <%= @passenger.booking.flight.to_airport.code %>
+Duration: <%= @passenger.booking.flight.duration %>
+
+To check your booking, just follow this link: <%= @url %>
+
+Thanks for the booking and have a great flight!

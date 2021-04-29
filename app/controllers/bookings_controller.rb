@@ -31,6 +31,9 @@ class BookingsController < ApplicationController
     def create
         @booking=Booking.new(booking_params)
         if @booking.save
+            @booking.passengers.each do |passenger|
+                PassengerMailer.thank_you_email(passenger).deliver_later
+            end
             redirect_to @booking, :notice => "Successfully created booking!"
           else
             #redirect_to new_booking_path(request.parameters)

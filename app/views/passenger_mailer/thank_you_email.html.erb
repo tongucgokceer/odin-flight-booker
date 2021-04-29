@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thanks for you booking confirmation from Odin Flight Booker, <%= @passenger.name %></h1>
+    <p>
+      You have successfully booked for flight : <%= @passenger.booking.flight.id %>.<br>
+    </p>
+
+    <p>
+    <h2>Date:</h2>
+
+    <p> <%= @passenger.booking.flight.date_of_flight %> </p>
+
+    <h2>Airport of departure:</h2>
+
+    <p> <%= @passenger.booking.flight.from_airport.code %> </p>
+
+    <h2>Airport of arrival:</h2>
+
+    <p> <%= @passenger.booking.flight.to_airport.code %> </p>
+
+    <h2>Duration:</h2>
+    <%= @passenger.booking.flight.duration %>
+    </p>
+
+    <p>
+      To check your booking, <%= link_to "just follow this link:", @url %> 
+    </p>
+    <p>Thanks for the booking and have a great flight!</p>
+  </body>
+</html>
+
+
+

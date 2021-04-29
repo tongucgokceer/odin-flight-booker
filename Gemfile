@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'jquery-rails'
 gem 'bootstrap-sass'
+gem "letter_opener", :group => :development
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
